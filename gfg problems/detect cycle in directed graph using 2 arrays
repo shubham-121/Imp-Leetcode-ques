@@ -1,0 +1,45 @@
+//{ Driver Code Starts
+#include <bits/stdc++.h>
+using namespace std;
+
+// } Driver Code Ends
+class Solution {
+    private:
+    bool isCycle(int vist[], int pathVist[], int src, vector<int> adj[]){
+        vist[src]=1;
+        pathVist[src]=1;
+        
+        for(auto itr: adj[src]){
+            
+            //if node is not visited and path is not visited
+            if(!vist[itr]){
+                if(isCycle(vist, pathVist, itr,adj)==true)
+                return true;
+            }
+            //if node is visited but has to be visited on same path
+             
+            else if(pathVist[itr]){
+                return true;
+            }
+        }
+        
+        pathVist[src]=0;
+        return false;
+    }
+  public:
+    // Function to detect cycle in a directed graph.
+    bool isCyclic(int V, vector<int> adj[]) {
+        // code here
+        int vist[V]={0};
+        int pathVist[V]={0};
+        
+        for(int i=0;i<V;i++){
+            if(!vist[i]){
+                if(isCycle(vist,pathVist,i,adj)==true)
+                return true;
+            }
+        }
+        return false;
+    }
+};
+
