@@ -1,15 +1,17 @@
+//vector of vector is given - [[1,0][2,1]]
+
 class Solution {
 public:
     bool canFinish(int N, vector<vector<int>>& preq) {
          vector<int>adj[N];
 	       queue<int>q;
-				 vector<int>indg(N,0);
+		vector<int>indg(N,0);
 	    
 	  
-	    for(auto it:preq){
+	    for(auto it:preq){   //creating adjacency list
 	        
-	        adj[it[1]].push_back(it[0]);
-					indg[it[0]]++;
+	        adj[it[1]].push_back(it[0]);     // and edge from  0->1 will be created as is to be performed before 1
+		indg[it[0]]++;                
 	    }
 	   
 	   
