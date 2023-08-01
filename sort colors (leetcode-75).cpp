@@ -1,25 +1,37 @@
-var sortColors = function(nums) {
-    
-     var count_0=0, count_1=0 ,count_2=0;
-        var i; var n=nums.length;
-        for(i=0;i<n;i++)
-        { 
-            if(nums[i]==0)
-            count_0++;
+class Solution {
+public:
+    void sortColors(vector<int>& nums) {
 
-            else if(nums[i]==1)
-            count_1++;
+     int count_0=0, count_1=0, count_2=0;
+    int red=0;int white=1;int blue=2;
+    int n=nums.size();
 
-            if(nums[i]==2)
-            count_2++;
-        }
+    for(int i=0;i<n;i++)      //counting freq of red,white,blue
+    {
+        if(nums[i]==red)
+        count_0++;
+    }
 
-        for(i=0;i<count_0;i++)
-        nums[i]=0;              //replacing 0
+    for(int i=0;i<n;i++)
+    {
+        if(nums[i]==white)
+        count_1++;
+    }
 
-        for(i=count_0;i<count_0 + count_1 ;i++)
-        nums[i]=1;              //replacing 1
+    for(int i=0;i<n;i++)
+    {
+        if(nums[i]==blue)
+        count_2++;
+    }
 
-        for(i=count_0 + count_1 ;i<n; i++)
-        nums[i]=2;              //replacing 2
+    for(int i=0; i<count_0 ;i++)   //replacing orignal array with red
+    nums[i]=red;
+
+    for(int i=count_0; i<count_0 + count_1; i++) //replacing orignal array with white
+    nums[i]=white;
+
+    for(int i=count_0 + count_1; i<n; i++) //replacing orignal array with blue
+    nums[i]=blue;
+
+    }
 };
